@@ -8,10 +8,8 @@
         <GroupBox Header="Attack Selection" Padding="10" Margin="0,0,0,15">
             <StackPanel>
                 <TextBlock Text="Available Attacks:" FontWeight="Bold" Margin="0,0,0,5"/>
-                <ComboBox Name="AttackCombo" Padding="8,5">
-                    <ComboBoxItem>MAC Flooding</ComboBoxItem>
-                    <ComboBoxItem>Unauthorized Access</ComboBoxItem>
-                    <ComboBoxItem>Misconfiguration Attack</ComboBoxItem>
+                <ComboBox Name="AttackCombo" Padding="8,5" ItemsSource="{Binding AvailableAttacks}">
+                    <!-- Data-bound to AttackManager -->
                 </ComboBox>
                 
                 <TextBlock Text="Attack Details:" FontWeight="Bold" Margin="0,10,0,5"/>

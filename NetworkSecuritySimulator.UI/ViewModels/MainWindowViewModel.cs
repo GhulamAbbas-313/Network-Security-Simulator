@@ -70,17 +70,39 @@ namespace NetworkSecuritySimulator.UI.ViewModels
         /// </summary>
         private void InitializeEngines()
         {
-            // TODO: Create instances of managers
-            // simulationEngine = new SimulationEngine();
-            // logManager = new LogManager();
-            // attackManager = new AttackManager();
-            // defenseManager = new DefenseManager();
-            //
+            // Create instances of managers
+            simulationEngine = new SimulationEngine();
+            logManager = new LogManager();
+            attackManager = new AttackManager();
+            defenseManager = new DefenseManager();
+
+            // Populate attacks from manager
+            foreach (var attack in attackManager.GetAllAttacks())
+            {
+                AvailableAttacks.Add(new AttackViewModel 
+                { 
+                    Name = attack.AttackName, 
+                    Description = attack.Description,
+                    Severity = attack.SeverityLevel
+                });
+            }
+
+            // Populate defenses from manager
+            foreach (var defense in defenseManager.GetAllDefenses())
+            {
+                AvailableDefenses.Add(new DefenseViewModel 
+                { 
+                    Name = defense.DefenseName, 
+                    Description = defense.Description,
+                    Effectiveness = defense.EffectivenessLevel
+                });
+            }
+
             // Subscribe to events
-            // simulationEngine.DeviceStateChanged += OnDeviceStateChanged;
-            // simulationEngine.LogGenerated += OnLogGenerated;
-            // attackManager.AttackExecuted += OnAttackExecuted;
-            // defenseManager.DefenseApplied += OnDefenseApplied;
+            simulationEngine.DeviceStateChanged += OnDeviceStateChanged;
+            simulationEngine.LogGenerated += OnLogGenerated;
+            attackManager.AttackExecuted += OnAttackExecuted;
+            defenseManager.DefenseApplied += OnDefenseApplied;
         }
 
         /// <summary>

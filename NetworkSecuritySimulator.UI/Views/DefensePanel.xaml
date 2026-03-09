@@ -8,11 +8,8 @@
         <GroupBox Header="Defense Selection" Padding="10" Margin="0,0,0,15">
             <StackPanel>
                 <TextBlock Text="Available Defenses:" FontWeight="Bold" Margin="0,0,0,5"/>
-                <ComboBox Name="DefenseCombo" Padding="8,5">
-                    <ComboBoxItem>Port Security</ComboBoxItem>
-                    <ComboBoxItem>Firewall Rules</ComboBoxItem>
-                    <ComboBoxItem>Access Control Lists</ComboBoxItem>
-                    <ComboBoxItem>VLAN Segmentation</ComboBoxItem>
+                <ComboBox Name="DefenseCombo" Padding="8,5" ItemsSource="{Binding AvailableDefenses}">
+                    <!-- Data-bound to DefenseManager -->
                 </ComboBox>
                 
                 <TextBlock Text="Defense Details:" FontWeight="Bold" Margin="0,10,0,5"/>

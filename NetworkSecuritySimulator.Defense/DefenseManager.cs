@@ -37,14 +37,20 @@ namespace NetworkSecuritySimulator.Defense
         /// </summary>
         private void InitializeDefenses()
         {
+            // Original defenses
             availableDefenses.Add(new PortSecurity());
             availableDefenses.Add(new FirewallRules());
-            // TODO: Add more defense types:
-            // - Access Control Lists (ACL)
-            // - VLANs
-            // - Intrusion Detection/Prevention
-            // - Encryption
-            // - Multi-factor authentication
+            
+            // New defenses
+            availableDefenses.Add(new DynamicARPInspection());
+            availableDefenses.Add(new MACBinding());
+            availableDefenses.Add(new IngressFiltering());
+            availableDefenses.Add(new DNSSEC());
+            availableDefenses.Add(new SecureCookies());
+            availableDefenses.Add(new RateLimiting());
+            availableDefenses.Add(new DDoSProtection());
+            availableDefenses.Add(new Encryption());
+            availableDefenses.Add(new CertificateValidation());
         }
 
         /// <summary>

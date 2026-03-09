@@ -30,10 +30,21 @@ namespace NetworkSecuritySimulator.Attacks
         /// </summary>
         private void InitializeAttacks()
         {
+            // Original attacks
             availableAttacks.Add(new MacFloodingAttack());
             availableAttacks.Add(new UnauthorizedAccessAttack());
             availableAttacks.Add(new MisconfigurationAttack());
-            // TODO: Add more attack types as needed
+            
+            // New attacks
+            availableAttacks.Add(new ARPPoisoningAttack());
+            availableAttacks.Add(new MACCloningAttack());
+            availableAttacks.Add(new IPSpoofingAttack());
+            availableAttacks.Add(new DNSPoisoningAttack());
+            availableAttacks.Add(new SessionHijackingAttack());
+            availableAttacks.Add(new DoSAttack());
+            availableAttacks.Add(new DDoSAttack());
+            availableAttacks.Add(new EavesdroppingAttack());
+            availableAttacks.Add(new MITMAttack());
         }
 
         /// <summary>
