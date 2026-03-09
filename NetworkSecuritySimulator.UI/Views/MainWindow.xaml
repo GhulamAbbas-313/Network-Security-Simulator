@@ -1,0 +1,212 @@
+<Window x:Class="NetworkSecuritySimulator.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Network Security Simulator" Height="900" Width="1400"
+        Background="#F5F5F5" FontFamily="Segoe UI" FontSize="12">
+    
+    <DockPanel>
+        <!-- Header -->
+        <StackPanel DockPanel.Dock="Top" Background="#2D2D2D" Padding="20">
+            <TextBlock Text="Network Security Simulator - Dashboard" 
+                       Foreground="White" FontSize="24" FontWeight="Bold"/>
+            <TextBlock Text="FINAL YEAR PROJECT - Network Topology Attack & Defense Simulation" 
+                       Foreground="#CCCCCC" FontSize="12" Margin="0,5,0,0"/>
+        </StackPanel>
+
+        <!-- Status Bar -->
+        <StatusBar DockPanel.Dock="Bottom" Background="#E0E0E0" Height="30">
+            <StatusBarItem>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Simulation Status: " FontWeight="Bold"/>
+                    <TextBlock Name="SimulationStatus" Text="Ready" Foreground="Green"/>
+                </StackPanel>
+            </StatusBarItem>
+            <Separator/>
+            <StatusBarItem HorizontalAlignment="Right">
+                <TextBlock Name="DeviceCount" Text="Devices: 0"/>
+            </StatusBarItem>
+        </StatusBar>
+
+        <!-- Main Content -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="300"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Left Sidebar - Topology Selection -->
+            <StackPanel Grid.Column="0" Background="White" Margin="0,0,5,0" Padding="15">
+                <TextBlock Text="Network Topologies" FontSize="14" FontWeight="Bold" Margin="0,0,0,10"/>
+                
+                <ListBox Name="TopologyListBox" Height="400">
+                    <ListBoxItem>Star Topology</ListBoxItem>
+                    <ListBoxItem>Bus Topology</ListBoxItem>
+                    <ListBoxItem>Ring Topology</ListBoxItem>
+                    <ListBoxItem>Mesh Topology</ListBoxItem>
+                    <ListBoxItem>Tree Topology</ListBoxItem>
+                    <ListBoxItem>Hybrid Topology</ListBoxItem>
+                    <ListBoxItem>Enterprise LAN</ListBoxItem>
+                    <ListBoxItem>Campus Network</ListBoxItem>
+                    <ListBoxItem>Data Center Network</ListBoxItem>
+                    <ListBoxItem>Branch Office Network</ListBoxItem>
+                    <ListBoxItem>DMZ Architecture</ListBoxItem>
+                    <ListBoxItem>Multi-Layer Network</ListBoxItem>
+                </ListBox>
+
+                <Button Content="Load Topology" Background="#007ACC" Foreground="White" 
+                        Padding="10,8" Margin="0,10,0,0" Height="40"/>
+                
+                <TextBlock Text="Simulation Controls" FontSize="14" FontWeight="Bold" Margin="0,20,0,10"/>
+                <Button Content="Start Simulation" Background="#28A745" Foreground="White" 
+                        Padding="10,8" Margin="0,5,0,0" Height="40"/>
+                <Button Content="Stop Simulation" Background="#DC3545" Foreground="White" 
+                        Padding="10,8" Margin="0,5,0,0" Height="40"/>
+                <Button Content="Reset" Background="#6C757D" Foreground="White" 
+                        Padding="10,8" Margin="0,5,0,0" Height="40"/>
+            </StackPanel>
+
+            <!-- Center - Main Content Tabs -->
+            <TabControl Grid.Column="1" Margin="0,0,5,0">
+                <!-- Topology Canvas Tab -->
+                <TabItem Header="Topology Visualization">
+                    <Grid Background="White" Padding="15">
+                        <StackPanel>
+                            <TextBlock Text="Network Topology Canvas" FontSize="14" FontWeight="Bold" Margin="0,0,0,10"/>
+                            <Border BorderBrush="#CCCCCC" BorderThickness="1" Height="500" Background="#F9F9F9">
+                                <Canvas Name="TopologyCanvas" Background="White">
+                                    <!-- Topology will be drawn here -->
+                                    <TextBlock Canvas.Left="20" Canvas.Top="20" 
+                                               Text="Load a topology to visualize the network structure..." 
+                                               Foreground="#666666"/>
+                                </Canvas>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+
+                <!-- Attack Panel Tab -->
+                <TabItem Header="Attack Control Panel">
+                    <Grid Background="White" Padding="15">
+                        <StackPanel>
+                            <TextBlock Text="Launch Network Attacks" FontSize="14" FontWeight="Bold" Margin="0,0,0,10"/>
+                            
+                            <StackPanel Margin="0,0,0,10">
+                                <TextBlock Text="Select Attack Type:" FontWeight="Bold" Margin="0,0,0,5"/>
+                                <ComboBox Name="AttackTypeCombo">
+                                    <ComboBoxItem>MAC Flooding</ComboBoxItem>
+                                    <ComboBoxItem>Unauthorized Access</ComboBoxItem>
+                                    <ComboBoxItem>Misconfiguration Attack</ComboBoxItem>
+                                </ComboBox>
+                            </StackPanel>
+
+                            <StackPanel Margin="0,0,0,10">
+                                <TextBlock Text="Select Target Device:" FontWeight="Bold" Margin="0,0,0,5"/>
+                                <ListBox Name="TargetDeviceList" Height="200">
+                                    <!-- Will be populated from topology -->
+                                </ListBox>
+                            </StackPanel>
+
+                            <StackPanel>
+                                <TextBlock Text="Attack Details:" FontWeight="Bold" Margin="0,0,0,5"/>
+                                <TextBlock Name="AttackDescription" Text="Select an attack to see details..." 
+                                           Foreground="#666666" TextWrapping="Wrap" Height="60"/>
+                                <Button Content="Execute Attack" Background="#FFC107" Foreground="Black" 
+                                        Padding="10,8" Margin="0,10,0,0" Height="40" FontWeight="Bold"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+
+                <!-- Defense Panel Tab -->
+                <TabItem Header="Defense Configuration">
+                    <Grid Background="White" Padding="15">
+                        <StackPanel>
+                            <TextBlock Text="Apply Defense Mechanisms" FontSize="14" FontWeight="Bold" Margin="0,0,0,10"/>
+                            
+                            <StackPanel Margin="0,0,0,10">
+                                <TextBlock Text="Select Defense Type:" FontWeight="Bold" Margin="0,0,0,5"/>
+                                <ComboBox Name="DefenseTypeCombo">
+                                    <ComboBoxItem>Port Security</ComboBoxItem>
+                                    <ComboBoxItem>Firewall Rules</ComboBoxItem>
+                                    <ComboBoxItem>Access Control Lists</ComboBoxItem>
+                                </ComboBox>
+                            </StackPanel>
+
+                            <StackPanel Margin="0,0,0,10">
+                                <TextBlock Text="Select Target Device:" FontWeight="Bold" Margin="0,0,0,5"/>
+                                <ListBox Name="DefenseTargetList" Height="200">
+                                    <!-- Will be populated from topology -->
+                                </ListBox>
+                            </StackPanel>
+
+                            <StackPanel>
+                                <TextBlock Text="Defense Details:" FontWeight="Bold" Margin="0,0,0,5"/>
+                                <TextBlock Name="DefenseDescription" Text="Select a defense to see details..." 
+                                           Foreground="#666666" TextWrapping="Wrap" Height="60"/>
+                                <Button Content="Apply Defense" Background="#28A745" Foreground="White" 
+                                        Padding="10,8" Margin="0,10,0,0" Height="40" FontWeight="Bold"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+
+                <!-- Device Monitor Tab -->
+                <TabItem Header="Device State Monitor">
+                    <Grid Background="White" Padding="15">
+                        <StackPanel>
+                            <TextBlock Text="Network Device Status" FontSize="14" FontWeight="Bold" Margin="0,0,0,10"/>
+                            
+                            <DataGrid Name="DeviceStateGrid" Height="500" AutoGenerateColumns="False"
+                                      CanUserAddRows="False" Background="White">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Device Name" Binding="{Binding DeviceName}" Width="150"/>
+                                    <DataGridTextColumn Header="IP Address" Binding="{Binding IpAddress}" Width="120"/>
+                                    <DataGridTextColumn Header="Current State" Binding="{Binding State}" Width="100"/>
+                                    <DataGridTextColumn Header="Vulnerabilities" Binding="{Binding VulnerabilityCount}" Width="100"/>
+                                    <DataGridTextColumn Header="Defenses Applied" Binding="{Binding DefenseCount}" Width="100"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+
+            <!-- Right Sidebar - Logs and Statistics -->
+            <StackPanel Grid.Column="2" Background="White" Margin="5,0,0,0" Padding="15">
+                <TextBlock Text="System Logs" FontSize="14" FontWeight="Bold" Margin="0,0,0,10"/>
+                
+                <ListBox Name="LogsListBox" Height="350" Background="#F5F5F5">
+                    <!-- Logs will be added here -->
+                </ListBox>
+
+                <Button Content="Clear Logs" Background="#6C757D" Foreground="White" 
+                        Padding="10,8" Margin="0,10,0,0" Height="35"/>
+                
+                <TextBlock Text="Statistics" FontSize="14" FontWeight="Bold" Margin="0,20,0,10"/>
+                
+                <StackPanel Background="#E8F4F8" Padding="10" Margin="0,0,0,10" BorderBrush="#CCCCCC" BorderThickness="1">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Total Devices: " FontWeight="Bold" Width="120"/>
+                        <TextBlock Name="StatTotalDevices" Text="0" Foreground="#007ACC"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Normal: " FontWeight="Bold" Foreground="Green" Width="120"/>
+                        <TextBlock Name="StatNormal" Text="0" Foreground="Green"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Vulnerable: " FontWeight="Bold" Foreground="Orange" Width="120"/>
+                        <TextBlock Name="StatVulnerable" Text="0" Foreground="Orange"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Compromised: " FontWeight="Bold" Foreground="Red" Width="120"/>
+                        <TextBlock Name="StatCompromised" Text="0" Foreground="Red"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </DockPanel>
+</Window>

@@ -1,0 +1,54 @@
+<!-- Solution file structure placeholder -->
+<Solution>
+  <Project Name="NetworkSecuritySimulator.Core">
+    <Description>Core simulation engine and device models</Description>
+    <ReferenceCount>5</ReferenceCount>
+  </Project>
+  
+  <Project Name="NetworkSecuritySimulator.Topologies">
+    <Description>12 network topology implementations</Description>
+    <DependsOn>Core</DependsOn>
+    <Classes>12</Classes>
+  </Project>
+  
+  <Project Name="NetworkSecuritySimulator.Attacks">
+    <Description>Attack simulation implementations</Description>
+    <DependsOn>Core</DependsOn>
+    <Attacks>
+      <Attack Name="MAC Flooding">Severity: 8/10</Attack>
+      <Attack Name="Unauthorized Access">Severity: 9/10</Attack>
+      <Attack Name="Misconfiguration">Severity: 7/10</Attack>
+    </Attacks>
+  </Project>
+  
+  <Project Name="NetworkSecuritySimulator.Defense">
+    <Description>Defense mechanism implementations</Description>
+    <DependsOn>Core</DependsOn>
+    <Defenses>
+      <Defense Name="Port Security">Effectiveness: 95%</Defense>
+      <Defense Name="Firewall Rules">Effectiveness: 85%</Defense>
+      <Defense Name="Access Control">Effectiveness: 80%</Defense>
+    </Defenses>
+  </Project>
+  
+  <Project Name="NetworkSecuritySimulator.Logging">
+    <Description>Log collection and management system</Description>
+    <DependsOn>Core</DependsOn>
+    <LogTypes>3</LogTypes>
+  </Project>
+  
+  <Project Name="NetworkSecuritySimulator.UI">
+    <Description>WPF desktop application UI</Description>
+    <DependsOn>Core, Topologies, Attacks, Defense, Logging</DependsOn>
+    <Views>6</Views>
+    <ViewModels>5</ViewModels>
+  </Project>
+  
+  <Project Name="NetworkSecuritySimulator.Data">
+    <Description>Data storage and configuration</Description>
+    <Folders>
+      <Folder Name="TopologyConfigs"/>
+      <Folder Name="Logs"/>
+    </Folders>
+  </Project>
+</Solution>

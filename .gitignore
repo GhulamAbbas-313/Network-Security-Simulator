@@ -1,0 +1,97 @@
+# .gitignore for Network Security Simulator
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio
+.vs/
+.vscode/
+*.user
+*.suo
+*.sln.docstates
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~
+
+# Build artifacts
+*.dll
+*.exe
+*.pdb
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+
+# Local configuration
+appsettings.local.json
+config.local.json
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Log files
+logs/
+*.log
+
+# Temporary files
+*.tmp
+~$*
+
+# OS
+.DS_Store
+Thumbs.db
+.Thumbs.db
+
+# Node modules (if any)
+node_modules/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Test coverage
+coverage/
+.coverage
+*/coverage/*
+
+# IDE Settings (keep default config, ignore local customization)
+.vscode/settings.json
+.idea/workspace.xml
+
+# Output directories
+bin/
+obj/
+publish/
+out/
+
+# Visual Studio Code settings
+.vscode/launch.json
+.vscode/tasks.json
+
+
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.log

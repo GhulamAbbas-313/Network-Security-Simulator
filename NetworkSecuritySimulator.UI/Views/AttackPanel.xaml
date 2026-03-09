@@ -1,0 +1,39 @@
+<UserControl x:Class="NetworkSecuritySimulator.UI.Views.AttackPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Height="400" Width="600" Background="White" Padding="15">
+    <StackPanel>
+        <TextBlock Text="Attack Simulation Control" FontSize="14" FontWeight="Bold" Margin="0,0,0,15"/>
+
+        <GroupBox Header="Attack Selection" Padding="10" Margin="0,0,0,15">
+            <StackPanel>
+                <TextBlock Text="Available Attacks:" FontWeight="Bold" Margin="0,0,0,5"/>
+                <ComboBox Name="AttackCombo" Padding="8,5">
+                    <ComboBoxItem>MAC Flooding</ComboBoxItem>
+                    <ComboBoxItem>Unauthorized Access</ComboBoxItem>
+                    <ComboBoxItem>Misconfiguration Attack</ComboBoxItem>
+                </ComboBox>
+                
+                <TextBlock Text="Attack Details:" FontWeight="Bold" Margin="0,10,0,5"/>
+                <TextBlock Name="AttackDetails" Text="Select an attack to see details..."
+                          Background="#F5F5F5" Padding="8" Height="60" TextWrapping="Wrap"/>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Header="Target Selection" Padding="10" Margin="0,0,0,15">
+            <StackPanel>
+                <TextBlock Text="Target Device:" FontWeight="Bold" Margin="0,0,0,5"/>
+                <ListBox Name="TargetListBox" Height="150">
+                    <!-- Devices will be populated here -->
+                </ListBox>
+            </StackPanel>
+        </GroupBox>
+
+        <StackPanel Orientation="Horizontal">
+            <Button Content="Execute Attack" Background="#FFC107" Foreground="Black"
+                   Padding="15,8" FontWeight="Bold" Margin="0,0,10,0"/>
+            <Button Content="Cancel" Background="#6C757D" Foreground="White"
+                   Padding="15,8"/>
+        </StackPanel>
+    </StackPanel>
+</UserControl>
